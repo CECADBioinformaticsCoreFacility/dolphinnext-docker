@@ -7,9 +7,8 @@ This Docker configuration is based on https://github.com/UMMS-Biocore/dolphinnex
 For the Dolphinnext quick start guide please check: 
 https://dolphinnext.readthedocs.io/en/latest/dolphinNext/quick.html
 
-DolphinNext can also be run as a standalone application using a docker container.
-First docker image need to be build.
-So, any change in the Dockerfile requires to build the image.
+DolphinNext can be run as a standalone application using a docker container.
+First docker image need to be build, any change in the Dockerfile requires the image to be built.
 
 Build docker image
 ---------
@@ -21,6 +20,7 @@ git clone https://github.com/CECADBioinformaticsCoreFacility/dolphinnext-docker.
 ```
 
 2. Build the image
+
 ```
 cd dolphinnext-docker
 docker build -t dolphinnext-docker .
@@ -30,6 +30,9 @@ Start the container
 ---------
 
 1. We move database outside of the container to be able to keep the changes in the database everytime you start the container.
+
+N.B. The database files in /export will need to be backed up regularly
+
 Please choose a directory in your machine to mount and replace `/path/to/mount` with your path. 
 * Note: Please don't change the target directory(`/export`) in the docker image. 
 
@@ -43,8 +46,7 @@ mkdir -p /path/to/mount
 docker run --name=CECAD-dolphinnext -m 10G -p 8080:80 -v /path/to/mount:/export -dti dolphinnext-docker
 ```
 
-3. After you start the container, you need to connect to it and start the mysql and apache server usign the command below;
-
+3. After you start the container, you need to connect to it and start the mysql and apache server usign the command below:
 
 ```
 docker exec CECAD-dolphinnext /bin/bash
@@ -62,7 +64,7 @@ Disconnect from the container leaving it running the background
 exit
 ```
 
-4. Verify that `dolphinnext` and `mysql` folders located inside of the `export` folder:
+4. Verify that `dolphinnext` and `mysql` folders are located inside of the `export` folder:
 
 
 ```
@@ -93,9 +95,5 @@ BASE_PATH = http://your_temporary_domain_name:8080/dolphinnext
 PUBWEB_URL = http://your_temporary_domain_name:8080/dolphinnext/tmp/pub
 ```
 * Please don’t change other lines because others are used inside of docker.
-
-
-
- 
 
 
