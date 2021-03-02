@@ -1,0 +1,74 @@
+; This is the main DolphinNext configuration file. It contains the
+; configuration directives.
+;
+; DB: Database name
+; PUBWEB_URL: url to reach public web directory (eg. http://localhost:8080/dolphinnext/tmp/pub for localhost)
+; RUNPATH, PUBWEB_URL and OCPU_PUBWEB_URL should end with same directory structure
+; OCPU_URL: url to reach local ocpu server (eg. http://localhost for localhost in which http://localhost/ocpu exist in the server)
+; OCPU_PUBWEB_URL: url to reach local pubweb directory (eg. http://localhost/dolphinnext/tmp/pub for localhost) 
+; API_URL must be http://localhost/dolphinnext in docker, since this url will be used to execute commands inside of the docker
+;
+; a version of the .sec configuraiton file lives at: /export/dolphinnext/config/.sec
+
+
+[Dolphinnext]
+DB=dolphinnext
+DBUSER=docker
+DBPASS=docker
+DBHOST=localhost
+DBPORT=3306
+SSHPATH=/export/.dolphinnext/.ssh
+AMAZON=z76fg0iua298gh4
+AMZPATH=/export/.dolphinnext/.amz
+GOOGPATH=/export/.dolphinnext/.goog
+SALT=23fg7r3
+PEPPER=3d5f1s8
+MASTER=u7ygvc2
+VERIFY=2s8f5h
+
+[CONFIG]
+TIMEZONE=Europe/Berlin
+RUNPATH=../tmp/pub
+TEMPPATH=../tmp
+API_URL = http://localhost/dolphinnext
+BASE_PATH = http://localhost:8080/dolphinnext
+PUBWEB_URL = http://localhost:8080/dolphinnext/tmp/pub
+OCPU_URL = http://localhost
+DEBROWSER_URL = http://localhost
+OCPU_PUBWEB_URL = http://localhost/dolphinnext/tmp/pub
+NEXTFLOW_VERSION = 20.10.0
+LDAP_SERVER=test
+DN_STRING=test
+BIND_USER= SVCLinuxLDAPAuth
+BIND_PASS=test
+EMAIL_SENDER=racton@uni-koeln.de
+EMAIL_ADMIN=racton@uni-koeln.de
+
+[UICONFIG]
+COMPANY_NAME=CECAD
+ALLOW_SIGNUP=true	
+ALLOW_SIGNUPGOOGLE=false
+; User Preferences for profile page 
+SHOW_AMAZON_KEYS=false
+SHOW_GOOGLE_KEYS=false
+SHOW_SSH_KEYS=true
+SHOW_GROUPS=true
+SHOW_GITHUB=true
+; User Preferences for log tab in run page
+; Note: Set SHOW_RUN_NEXTFLOWLOG as false to hide amazon keys.
+SHOW_RUN_LOG=true
+SHOW_RUN_TIMELINE=true
+SHOW_RUN_REPORT=true
+SHOW_RUN_DAG=true
+SHOW_RUN_TRACE=true
+SHOW_RUN_NEXTFLOWLOG=true  
+SHOW_RUN_NEXTFLOWNF=true
+SHOW_RUN_NEXTFLOWCONFIG=true
+
+; Wizard Settings
+SHOW_WIZARD=true
+; In order to use test profile, please define a run environment and share with group.
+; Use shared group id to define TEST_PROFILE_GROUP_ID.
+;SHOW_TEST_PROFILE=true
+;TEST_PROFILE_GROUP_ID=18
+
