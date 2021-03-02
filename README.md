@@ -2,7 +2,9 @@ DolphinNext docker version (CECAD)
 ========
 DolphinNext original repository is located at https://github.com/UMMS-Biocore/dolphinnext.
 
-For a quick start please check the quick start guide. 
+This Docker configuration is based on https://github.com/UMMS-Biocore/dolphinnext-docker and https://github.com/UMMS-Biocore/dolphinnext-studio
+
+For the Dolphinnext quick start guide please check: 
 https://dolphinnext.readthedocs.io/en/latest/dolphinNext/quick.html
 
 DolphinNext can also be run as a standalone application using a docker container.
@@ -38,17 +40,30 @@ mkdir -p /path/to/mount
 2. While running the container;
 
 ```
-docker run -m 10G -p 8080:80 -v /path/to/mount:/export -ti dolphinnext-docker /bin/bash
+docker run --name=CECAD-dolphinnext -m 10G -p 8080:80 -v /path/to/mount:/export -dti dolphinnext-docker
 ```
 
+3. After you start the container, you need to connect to it and start the mysql and apache server usign the command below;
+
+
 ```
-3. After you start the container, you need to start the mysql and apache server usign the command below;
+docker exec CECAD-dolphinnext /bin/bash
+```
+
+Once connected run the startup script located at bin/startup in this repository
 
 ```
 startup
 ```
 
+Disconnect from the container leaving it running the background
+
+```
+exit
+```
+
 4. Verify that `dolphinnext` and `mysql` folders located inside of the `export` folder:
+
 
 ```
 ls /export
@@ -61,6 +76,9 @@ http://localhost:8080/dolphinnext
 Hosting settings
 ------
 We define `localhost:8080` in /path/to/mount/dolphinnext/config/.sec file and use that to log in or other operations.
+
+See the example file example_.sec_file.txt
+
 You need to change `localhost` to the IP address or domain you use. 
 Please update `BASE_PATH` and `PUBWEB_URL` as follows:
 
